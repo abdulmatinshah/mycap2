@@ -29,6 +29,11 @@ INSTALLED_APPS = [
     'home',
     'search',
 
+    # Third party apps
+    'django_gulp',
+
+
+
     'wagtail.wagtailforms',
     'wagtail.wagtailredirects',
     'wagtail.wagtailembeds',
@@ -50,6 +55,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # compressor after static files
+    'compressor',
 ]
 
 MIDDLEWARE = [
@@ -120,6 +127,8 @@ USE_TZ = True
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # compressor
+    'compressor.finders.CompressorFinder',
 ]
 
 STATICFILES_DIRS = [
@@ -131,6 +140,8 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+# compress will be opposite of DEBUG (in production it will be true)
+# COMPRESS_ENABLED = True
 
 
 # Wagtail settings

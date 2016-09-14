@@ -18,5 +18,8 @@ static/
 bin/
 include/
 lib/
-xplore.db
-xplore/settings/local_example.py
+
+mycap/settings/local_example.py
+.idea/
+db.sqlite3
+setup.cfg

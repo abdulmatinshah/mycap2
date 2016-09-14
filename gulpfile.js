@@ -10,14 +10,16 @@ var scsslint = require('gulp-scss-lint');
 var jshint = require('gulp-jshint');
 var size = require('gulp-size');
 var imagemin = require('gulp-imagemin');
-
-var o_images = './xplore/static/img/';
+// var browserSync = require('browser-sync').create();
+var browserSync = require('browser-sync');
+var reload      = browserSync.reload;
+var o_images = './mycap/static/images/';
 
 var paths = {
-    'css': './xplore/static/css/',
-    'js': './xplore/static/js/',
-    'sass': './sass/',
-    'images': './gfx/',
+    'css': './mycap/static/css/',
+    'js': './mycap/static/js/',
+    'sass': './mycap/static/sass/',
+    'images': './mycap/static/images/'
 };
 
 
@@ -34,13 +36,26 @@ var patterns = {
         '!' + paths.js + '**/*.min.js'
     ],
     'css': [
-        paths.css + 'screen.css'
+        paths.css + 'styles.css'
     ],
     'images': [
         paths.images + '*',
-    ]
+    ],
+    'html': ['./**/*.html']
 };
 
+gulp.task('browser-sync', function() {
+    browserSync({
+        proxy: 'localhost:8000',
+        port: 8001
+    });
+});
+
+gulp.task('watch', function() {
+    gulp.watch(paths.css).on("change", function(file) {
+        browserSync.reload(file.path);
+    });
+});
 
 gulp.task('compass', function() {
     gulp.src(patterns.sass)
@@ -50,8 +65,10 @@ gulp.task('compass', function() {
             sourcemap:true,
             force: true,
             css: paths.css,
-            sass: paths.sass
-        }))
+            sass: paths.sass,
+            // task: 'watch'
+
+        })).pipe(browserSync.reload({stream:true}))
         .on('error', function(error) {
             gutil.log(error);
         });
@@ -98,23 +115,65 @@ gulp.task('jslint', function() {
 gulp.task('styles', function () {
     gulp.start('scsslint');
     gulp.start('compass');
+
 });
+
+gulp.task('html', function () {
+    gulp.src(patterns.html)
+    .pipe(browserSync.reload({stream: true}))
+    .on('error', function(error) {
+            gutil.log(error);
+        });
+})
 
 gulp.task('build', function() {});
 
-gulp.task('default', function () {
+gulp.task('default', [ 'browser-sync', 'compass' ],function () {
     gulp.start('jslint');
     gulp.start('scsslint');
     gulp.start('compass');
     gulp.start('imagemin');
+    gulp.start('html');
 
     gulp.watch(patterns.css, ['size']);
     gulp.watch(patterns.js, ['jslint']);
     gulp.watch(patterns.sass, ['scsslint']);
     gulp.watch(patterns.sass, ['compass']);
+    gulp.watch(patterns.css, ['watch']);
     gulp.watch(patterns.images, ['imagemin']);
+    gulp.watch(patterns.html, ['html']);
+
 });
 
 // end of gulpfile.js
 }());
 
+
+
+/*
+// Assuming you already have NodeJS, npm and gulp installed
+// and followed instructions at:
+// https://www.browsersync.io/docs/gulp/
+//
+// save this file at <<DJANGO PROJECT ROOT>>
+// on your terminal:
+// $ cd <<DJANGO PROJECT ROOT>>
+// $ gulp
+
+// this will open a browser window with your project
+// and reload it whenever a file with the extensions scss,css,html,py,js
+// is changed
+
+/!*
+var gulp        = require('gulp');
+var browserSync = require('browser-sync');
+var reload      = browserSync.reload;
+
+gulp.task('default', function() {
+    browserSync.init({
+        notify: false,
+        proxy: "localhost:8000"
+    });
+    gulp.watch(['./!**!/!*.{scss,css,html,py,js}'], reload);
+});*!/
+*/
