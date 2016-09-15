@@ -1,9 +1,16 @@
 from __future__ import absolute_import, unicode_literals
 
-from django.db import models
+from mycap.utils import *
+from mycap.util_streamfield import *
 
-from wagtail.wagtailcore.models import Page
+class HomePageCarouselItem(Orderable, CarouselItem):
+    page = ParentalKey('HomePage', related_name='carousel_items')
 
 
 class HomePage(Page):
-    pass
+    body = StreamField(PageStreamBlock(), null=True, blank=True)
+
+HomePage.content_panels = [
+    InlinePanel('carousel_items', label='Carousel items'),
+    StreamFieldPanel('body')
+]

@@ -28,6 +28,10 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 INSTALLED_APPS = [
     'home',
     'search',
+    # My Apps
+    'content_page',
+    'articles',
+    'contact_form',
 
     # Third party apps
     'django_gulp',
