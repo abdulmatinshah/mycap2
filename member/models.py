@@ -40,6 +40,25 @@ class MemberIndex(Page):
         return members
 
 
+from wagtail.wagtailcore.models import Orderable
+from modelcluster.fields import ParentalKey
+
+class ImageLink(models.Model):
+    imagelink = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    panels = [
+        ImageChooserPanel('imagelink')
+    ]
+
+class ImageGallery(Orderable, ImageLink):
+    page = ParentalKey('MemberPage', related_name='image_gallery')
+
+
 class MemberPage(Page, ContactFields):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
@@ -77,7 +96,7 @@ MemberPage.content_panels = [
     FieldPanel('biography', classname="full"),
     ImageChooserPanel('image'),
     MultiFieldPanel(ContactFields.panels, "Contact"),
-    # InlinePanel('related_links', label="Related links"),
+    InlinePanel('image_gallery', label="Image Gallery"),
 ]
 
 MemberPage.promote_panels = Page.promote_panels + [

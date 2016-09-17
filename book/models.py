@@ -41,6 +41,8 @@ CHOICES = (
     ('book/one.html', 'One'),
     ('book/two.html', 'Two'),
 )
+
+
 class BookPage(Page):
     body = StreamField(PageStreamBlock)
     template_string = models.CharField(max_length=250, choices=CHOICES, default='book/one.html')
