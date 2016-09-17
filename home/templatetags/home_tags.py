@@ -139,3 +139,17 @@ def breadcrumbs(context):
         'ancestors': ancestors,
         'request': context['request'],
     }
+
+# ///////////////////////////////////////////////
+#     SIDE BAR ARTICLES
+# ///////////////////////////////////////////////
+from articles.models import ArticlePage
+
+@register.inclusion_tag('tags/sidebar_articles.html', takes_context=True)
+def sidebar_articles(context):
+    articles = ArticlePage.objects.live().order_by('?')[:1]
+    print('lllllllllllll', articles)
+    return {
+        'articles': articles,
+        'request': context['request'],
+    }

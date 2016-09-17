@@ -6,7 +6,7 @@
     {% if carousel_items|length > 1 %}
       <ol class="carousel-indicators">
         {% for carousel_item in carousel_items %}
-          <li data-target="#carousel" data-slide-to="{{ forloop.counter }}"{% if forloop.first %} class="active"{% endif %}></li>
+          <li data-target="#carousel" data-slide-to="{{ forloop.counter0 }}"{% if forloop.first %} class="active"{% endif %}></li>
         {% endfor %}
       </ol>
     {% endif %}

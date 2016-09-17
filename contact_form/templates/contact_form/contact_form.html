@@ -11,16 +11,11 @@
  </div>
     </div>
 </div>
-<div class="container">
-    <div class="grid">
-        <div class="s-12 m-4 l-4">
 
             <form action="{% pageurl self %}" method="POST">
              {% csrf_token %}
              {{ form.as_p }}
-            <input type="submit" class="btn btn-success btn--small">
+            <input type="submit" class="btn btn-success btn-sm">
         </form>
-        </div>
-    </div>
-</div>
+
 {% endblock content %}

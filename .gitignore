@@ -23,3 +23,4 @@ mycap/settings/local_example.py
 .idea/
 db.sqlite3
 setup.cfg
+.idea/workspace.xml

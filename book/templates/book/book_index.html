@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load wagtailcore_tags wagtailimages_tags%}
+<h>Book Index Page</h>
+{% image self.banner_image width-200 %}
+{% for book in self.books %}
+<h1><a href="{% pageurl book %}">{{book.title}}</a></h1>
+{% endfor %}
+{% endblock content %}

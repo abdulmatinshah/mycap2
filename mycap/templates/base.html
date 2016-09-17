@@ -10,17 +10,14 @@
 
         <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_postfix %} | CAP {% endblock %}</title>
 
-        <meta name="description" content="{% if self.search_description %}{{ self.search_description }}{% endif %}">
+     <meta name="description" content="{% if self.search_description %}{{ self.search_description }}{% endif %}">
 
-        {# External stylesheets #}
+     {# External stylesheets #}
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+    {% compress css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
 
-        {# Local static assets such as css, images and javascrpt should be stored at [yourapp]/static/[yourapp]/... #}
-        {% compress css %}
-            {# Custom stylesheets #}
-            {# SCSS compilation relies on django compressor #}
-            <link rel="stylesheet" type="text/x-scss" href="{% static "css/main.scss" %}" />
-        {% endcompress %}
+    {% endcompress %}
 
         {% block extra_css %}{% endblock %} {# Override this block in individual templates in order to add stylesheets on a template by template basis #}
 
@@ -62,6 +59,8 @@
             {% endblock %}
         {% block content %}{% endblock %}
 
+       {% include 'partials/prev_next.html' %}
+
 {% compress js %}
     {# Global javascript #}
             {# External javascript #}
@@ -75,14 +74,11 @@
         </div>
     </div>
 
-
-
 {% compress js %}
-
-            {# Custom javascript #}
-
-            <script src="{% static 'javascripts/main.js' %}"></script>
-        {% block extra_js %}{% endblock %}
+{# Custom javascript #}
+<script src="{% static 'javascripts/vendor/fluidvids.js' %}"></script>
+<script src="{% static 'javascripts/main.js' %}"></script>
+{% block extra_js %}{% endblock %}
 {% endcompress %}
-    </body>
+</body>
 </html>

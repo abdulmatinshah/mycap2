@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load wagtailcore_tags wagtailimages_tags home_tags %}
+{% block content %}
+<div class="row">
+    <div class="col-md-3">
+        {% sidebar_articles %}
+
+    </div>
+    <div class="col-md-9">
+        {% if self.members %}
+{% for member in self.members %}
+
+<h2><a href="{% pageurl member %}">{{member.title}}</a></h2>
+{% if member.image %}
+        {% image member.image fill-180x220 class="img-thumbnail" %}
+    {% endif %}
+    <div>{{ member.biography|richtext }}</div>
+<a href="{% pageurl member %}">Read more&hellip;</a>
+{% endfor %}
+{% endif %}
+    </div>
+</div>
+{% endblock content %}

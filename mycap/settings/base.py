@@ -32,6 +32,8 @@ INSTALLED_APPS = [
     'content_page',
     'articles',
     'contact_form',
+    'book',
+    'member',
 
     # Third party apps
     'django_gulp',

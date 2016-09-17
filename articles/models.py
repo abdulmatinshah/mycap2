@@ -43,7 +43,7 @@ def get_article_context(context):
 class ArticleIndexPage(Page):
     @property
     def articles(self):
-        # Get list of blog pages that are descendants of this page
+        # Get list of article pages that are descendants of this page
         articles = ArticlePage.objects.descendant_of(self).live()
         articles = articles.order_by(
             '-date'
@@ -97,12 +97,13 @@ class ArticleIndexPage(Page):
         context['tag'] = tag
         context['author'] = author
         context['COMMENTS_APP'] = COMMENTS_APP
-        context = get_article_context(context)
+        # context = get_article_context(context)
 
         return context
 
     class Meta:
         verbose_name = _('Article index')
+
     subpage_types = ['articles.ArticlePage']
 
 
