@@ -37,9 +37,9 @@ class BookIndex(Page):
 
 
 CHOICES = (
-    ('book/book_page.html', 'Book Page'),
-    ('book/one.html', 'One'),
-    ('book/two.html', 'Two'),
+    ('book/book_page.html', 'Book Page Template'),
+    ('book/one.html', 'Design One'),
+    ('book/two.html', 'Design Two'),
 )
 
 
@@ -58,6 +58,11 @@ class BookPage(Page):
     settings_panels = Page.settings_panels + [
         FieldPanel('template_string')
     ]
+
+    # def get_context(self, request, *args, **kwargs):
+    #     context = super().get_context(request, *args, **kwargs)
+    #     context['parent'] = self.get_parent().specific
+    #     return context
 
     @property
     def index_page(self):
