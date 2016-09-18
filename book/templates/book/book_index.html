@@ -1,10 +1,40 @@
 {% extends 'base.html' %}
-
-{% block content %}
 {% load wagtailcore_tags wagtailimages_tags%}
-<h>Book Index Page</h>
-{% image self.banner_image width-200 %}
-{% for book in self.books %}
-<h1><a href="{% pageurl book %}">{{book.title}}</a></h1>
+{% block content %}
+{% image self.banner_image fill-1200x250 %}
+<!--
+<div class="list-group">
+  <h1 class="list-group-item active">{{ self.title }}</h1>
+    {% for book in self.books %}
+        <a href="{% pageurl book %}" class="list-group-item">{{book.title}}</a>
+    {% endfor %}
+</div>
+-->
+ {% for child in self.get_children.live.all %}
+<div class="list-group">
+    <h1 class="list-group-item list-group-item-success"><a href="{% pageurl child %}">{{ child.title }}</a></h1>
+    {% for book in child.get_children.live.all %}
+        <a href="{% pageurl book %}" class="list-group-item">{{book.title}}</a>
+    {% endfor %}
+</div>
 {% endfor %}
+
+
+<!--
+<div class="well">
+    <ul>
+    {% for child in self.get_children.live.all %}
+        <li>{{ child }}
+        {% if child.get_children %}
+            <ul>
+                {% for c in child.get_children.live.all %}
+                <li>{{ c }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+-->
 {% endblock content %}

@@ -27,7 +27,7 @@ class BookIndex(Page):
         ImageChooserPanel('banner_image'),
     ]
 
-    subpage_types = ['book.BookPage', ]
+    subpage_types = ['book.BookIndex', 'book.BookPage', ]
 
     @property
     def books(self):
@@ -35,6 +35,10 @@ class BookIndex(Page):
 
         return books
 
+    # @property
+    # def child_pages(self):
+    #     books = self.get_descendants().live()
+    #     return books
 
 CHOICES = (
     ('book/book_page.html', 'Book Page Template'),
@@ -45,7 +49,7 @@ CHOICES = (
 
 class BookPage(Page):
     body = StreamField(PageStreamBlock)
-    template_string = models.CharField(max_length=250, choices=CHOICES, default='book/one.html')
+    template_string = models.CharField(max_length=250, choices=CHOICES, default='book/book_page.html')
 
     search_fields = Page.search_fields + [
         index.SearchField('body'),
