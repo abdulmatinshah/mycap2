@@ -50,7 +50,6 @@ def top_menu(context, parent, calling_page=None):
 def top_menu_children(context, parent):
     menuitems_children = parent.get_children()
     menuitems_children = menuitems_children.live().in_menu()
-    print(menuitems_children)
     return {
         'parent': parent,
         'menuitems_children': menuitems_children,
@@ -58,6 +57,21 @@ def top_menu_children(context, parent):
         'request': context['request'],
     }
 
+# SIDEMENU ITEMS
+@register.inclusion_tag('partials/side_menu_items.html', takes_context=True)
+def side_menu_items(context, parent=None, calling_page=None):
+    if parent is None and calling_page is not None:
+        parent = calling_page.get_ancestors().last()
+    # print("Parent: {} \t Calling_page: {}".format(parent, calling_page))
+    side_menu_items = parent.get_children().live().in_menu()
+    for side_menu_item in side_menu_items:
+        side_menu_item.active = (calling_page.url.startswith(side_menu_item.url) if calling_page else False)
+    return {
+        'parent': parent,
+        'calling_page': calling_page,
+        'side_menu_items': side_menu_items,
+        'request': context['request'],
+    }
 
 # # Retrieves all live pages which are children of the calling page
 # #for standard index listing
@@ -147,8 +161,7 @@ from articles.models import ArticlePage
 
 @register.inclusion_tag('tags/sidebar_articles.html', takes_context=True)
 def sidebar_articles(context):
-    articles = ArticlePage.objects.live().order_by('?')[:1]
-    print('lllllllllllll', articles)
+    articles = ArticlePage.objects.live().order_by('?')[:5]
     return {
         'articles': articles,
         'request': context['request'],

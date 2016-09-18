@@ -1,0 +1,12 @@
+{% load home_tags wagtailcore_tags %}
+<div>
+    <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="{% pageurl parent %}"><span class="glyphicon glyphicon-chevron-right"></span> {{ parent.title }}</a></li>
+         {% for child in side_menu_items %}
+        <li><a href="{% pageurl child %}" {% if child.active %} class="active2" {%  endif %}><span class="glyphicon glyphicon-chevron-right"></span> {{ child.title }}
+        </a>
+    {% endfor %}
+        </li>
+
+    </ul>
+</div>

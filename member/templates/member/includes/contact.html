@@ -1,6 +1,27 @@
-<div class="page-header"><h3>Contact</h3></div>
-<div class="row">
-    <dl>
+{% load wagtailcore_tags %}
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active bg-success"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">Contact</a></li>
+    <li role="presentation" class="bg-success"><a href="#biography" aria-controls="biography" role="tab" data-toggle="tab">Biography</a></li>
+
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane fade in active" id="contact">
+        <dl class="dl-horizontal">
+            <div class="col-sm-4">
+            {% if contact.telephone %}
+                <dt>Telephone</dt>
+                <dd>{{ contact.telephone }}</dd>
+            {% endif %}
+
+            {% if contact.email %}
+                <dt>Email</dt>
+                <dd>{{ contact.email }}</dd>
+            {% endif %}
+        </div>
         <div class="col-sm-4">
             {% if contact.address_1 %}
                 <dt>Address 1</dt>
@@ -16,7 +37,9 @@
                 <dt>City</dt>
                 <dd>{{ contact.city }}</dd>
             {% endif %}
+        </div>
 
+        <div class="col-sm-4">
             {% if contact.country %}
                 <dt>Country</dt>
                 <dd>{{ contact.country }}</dd>
@@ -27,18 +50,13 @@
                 <dd>{{ contact.post_code }}</dd>
             {% endif %}
         </div>
-        <div class="col-sm-4">
-            {% if contact.telephone %}
-                <dt>Telephone</dt>
-                <dd>{{ contact.telephone }}</dd>
-            {% endif %}
-
-            {% if contact.email %}
-                <dt>Email</dt>
-                <dd>{{ contact.email }}</dd>
-            {% endif %}
-        </div>
-        <div class="col-sm-4">
-        </div>
     </dl>
+    </div>
+    <div role="tabpanel" class="tab-pane fade" id="biography">
+        {{ contact.biography|richtext }}
+    </div>
+
+  </div>
+
 </div>
+
