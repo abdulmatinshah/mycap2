@@ -3,15 +3,17 @@
 
 
 {% block content %}
-<div class="container">
-    <div class="grid">
-        <div class="s-12">
-             {% include 'articles/article_post.html' with article=self %}
-        </div>
+<div class="col-md-3">
+        {% sidebar_articles exclude=self %}
     </div>
-</div>
+
+<div class="col-md-9">
+
+             {% include 'articles/article_post.html' with article=self %}
+
+
     {% if COMMENTS_APP == 'django_comments_xtd' %}
         {% include 'articles/article_post_comments_xtd.html' with article=self %}
     {% endif %}
-
+ </div><!--col-md-9-->
 {% endblock %}

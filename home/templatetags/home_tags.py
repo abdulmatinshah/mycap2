@@ -159,9 +159,15 @@ def breadcrumbs(context):
 # ///////////////////////////////////////////////
 from articles.models import ArticlePage
 
+
 @register.inclusion_tag('tags/sidebar_articles.html', takes_context=True)
-def sidebar_articles(context):
-    articles = ArticlePage.objects.live().order_by('?')[:5]
+def sidebar_articles(context, exclude=None):
+
+    if exclude is not None:
+        articles = ArticlePage.objects.exclude(id=exclude.id).live().order_by('?')[:5]
+    else:
+        articles = ArticlePage.objects.live().order_by('?')[:5]
+
     return {
         'articles': articles,
         'request': context['request'],

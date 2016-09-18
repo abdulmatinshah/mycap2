@@ -1,16 +1,22 @@
 {% load wagtailcore_tags static home_tags wagtailimages_tags%}
 
-<a class="article-post-link" href="{% pageurl article %}">
+
 <figure>
     {% if include_context == "index_page" %}
-        {% image article.header_image width-800 %}
+        <!--index page-->
+    <a class="article-post-link" href="{% pageurl article %}">
+        {% image article.header_image fill-800x260 class='img-responsive' %}
+        <h2>{{ article.title|title }}</h2>
+    </a>
     {% else %}
-        {% image article.header_image width-800 %}
+    <!--single article page-->
+        {% image article.header_image fill-800x460 class='img-responsive' %}
+        <h2>{{ article.title|title }}</h2>
     {% endif %}
 
 </figure>
-    <h2>{{ article.title }}</h2>
-</a>
+
+
 
 {% if article.date %}
     <div class="meta date">

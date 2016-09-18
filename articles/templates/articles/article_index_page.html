@@ -1,14 +1,14 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags static %}
+{% load wagtailcore_tags static home_tags %}
 {% block body_class %}template-homepage{% endblock %}
 
 {% block content %}
 
-
-<div class="container">
-    <div class="grid">
-    <div class="s-12">
-    {% if category %}
+    <div class="col-md-3">
+        {% sidebar_articles %}
+    </div>
+    <div class="col-md-9">
+         {% if category %}
     <h2>{{ category }}</h2>
     {% endif %}
     {% if tag %}
@@ -40,7 +40,7 @@
     {% else %}
         <p>There are currently no articles</p>
     {% endif %}
-        </div><!--s-12-->
-        </div><!--grid-->
-    </div><!--container-->
+
+    </div>
+
 {% endblock %}
