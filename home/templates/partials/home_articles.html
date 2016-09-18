@@ -1,0 +1,34 @@
+{% load static wagtailcore_tags wagtailimages_tags home_tags %}
+<div class="row">
+
+    <div class="wrapper">
+        {% for a in articles %}
+        <div class="col-sm-6">
+      <div>
+        <div class="hover panel">
+
+
+         <div class="front">
+            <div class="box1">
+              <p>{% image a.header_image fill-600x320 class='img-responsive' %}</p>
+            </div>
+          </div>
+
+
+          <div class="back">
+            <div class="box2">
+              <h3><a href="{{a.url}}">{{ a.title|title }}</a></h3>
+                <div>
+                    {{ a.body|richtext|truncatewords_html:70 }}
+                </div>
+            </div>
+          </div>
+
+     </div><!--hover panel-->
+  </div><!--col_third-->
+            </div><!--col-sm-6-->
+        {% endfor %}
+</div><!--wrapper-->
+
+
+</div><!--row-->

@@ -19,6 +19,9 @@ from modelcluster.tags import ClusterTaggableManager
 from modelcluster.fields import ParentalKey
 import datetime
 
+# for ImageGallery
+from wagtail.wagtailcore.models import Orderable
+
 
 COMMENTS_APP = getattr(settings, 'COMMENTS_APP', None)
 
@@ -189,6 +192,23 @@ def limit_author_choices():
     return limit
 
 
+class ImageLink(models.Model):
+    imagelink = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    panels = [
+        ImageChooserPanel('imagelink')
+    ]
+
+
+class ImageGallery(Orderable, ImageLink):
+    page = ParentalKey('ArticlePage', related_name='image_gallery')
+
+
 class ArticlePage(Page):
 
     body = RichTextField(verbose_name=_('body'), blank=True)
@@ -267,4 +287,5 @@ ArticlePage.content_panels = [
     ], heading="Tags and Categories"),
     ImageChooserPanel('header_image'),
     FieldPanel('body', classname="full"),
+    InlinePanel('image_gallery', label="Image Gallery"),
 ]

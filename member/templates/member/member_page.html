@@ -8,9 +8,6 @@
     <div class="col-md-3">
         {% sidebar_articles %}
         {% side_menu_items calling_page=self %}
-
-
-
     </div>
     <div class="col-md-9">
         <div class="row">
@@ -20,14 +17,14 @@
                 {% endif %}
             </div><!--inner col-md-3-->
             <div class="col-md-9">
-                {% for i in self.image_gallery.all %}
-            {% image i.imagelink fill-140x140 as ismall %}
-            {% image i.imagelink width-1000 as ilarge %}
+            {% for i in self.image_gallery.all %}
+                {% image i.imagelink fill-140x140 as ismall %}
+                {% image i.imagelink width-1000 as ilarge %}
 
-            <a href="{{ ilarge.url }}" class="swipebox" title="im">
-                <img src="{{ ismall.url }}" alt="image">
-            </a>
-        {% endfor %}
+                <a href="{{ ilarge.url }}" class="swipebox" title="CAP">
+                    <img src="{{ ismall.url }}" alt="image">
+                </a>
+            {% endfor %}
             </div><!--inner col-md-9-->
         </div><!-- inner row-->
 
@@ -38,24 +35,17 @@
         {% endif %}
         <hr>
         {% include "member/includes/contact.html" with contact=self only %}
-
-
     </div><!--col-md-9-->
 </div>
-
-
-
 {% endblock %}
 
 
 {% block extra_js %}
 <script src="{% static 'js/jquery.swipebox.min.js' %}"></script>
-
 <script type="text/javascript">
 	jQuery( document ).ready(function($) {
-
-			/* Basic Gallery */
-			$('.swipebox').swipebox();
+        /* Basic Gallery */
+        $('.swipebox').swipebox();
 });
 	</script>
 {% endblock extra_js %}

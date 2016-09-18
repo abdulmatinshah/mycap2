@@ -55,6 +55,7 @@ class ImageLink(models.Model):
         ImageChooserPanel('imagelink')
     ]
 
+
 class ImageGallery(Orderable, ImageLink):
     page = ParentalKey('MemberPage', related_name='image_gallery')
 

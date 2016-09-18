@@ -1,5 +1,7 @@
-{% load wagtailcore_tags static home_tags wagtailimages_tags%}
-
+{% load static wagtailcore_tags wagtailimages_tags home_tags %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/swipebox.min.css' %}">
+{% endblock %}
 
 <figure>
     {% if include_context == "index_page" %}
@@ -33,6 +35,20 @@
 {% else %}
 <div class="article-body">
     {{ article.body|richtext }}
+</div>
+{% endif %}
+
+{% if article.image_gallery %}
+    <div class="row">
+        <div class="col-sm-12">
+            {% for i in self.image_gallery.all %}
+                 {% image i.imagelink fill-140x140 as ismall %}
+                 {% image i.imagelink width-1000 as ilarge %}
+                  <a href="{{ ilarge.url }}" class="swipebox" title="CAP">
+                       <img src="{{ ismall.url }}" alt="image">
+                  </a>
+            {% endfor %}
+        </div>
 </div>
 {% endif %}
 
@@ -71,3 +87,5 @@
         </div>
     </div>
 </div>
+
+
