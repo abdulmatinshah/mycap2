@@ -9,7 +9,7 @@ ALLOWED_HOSTS = ['mycap.org.pk']
 WAGTAILSEARCH_BACKENDS = {
     'default': {
         'BACKEND': 'wagtail.wagtailsearch.backends.elasticsearch.ElasticSearch',
-        'INDEX': 'xplore'
+        'INDEX': 'mycap'
     }
 }
 
