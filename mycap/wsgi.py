@@ -13,6 +13,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mycap.settings.dev")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mycap.settings.production")
 
 application = get_wsgi_application()

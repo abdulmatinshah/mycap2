@@ -19,11 +19,9 @@
 </figure>
 
 
-
 {% if article.date %}
     <div class="meta date">
-        {{ article.date|date:"F jS, Y" }}
-        {{ article.author }}
+        <p>{{ article.date|date:"F jS, Y" }} by {{ article.author.get_full_name }} </p>
     </div>
 {% endif %}
 

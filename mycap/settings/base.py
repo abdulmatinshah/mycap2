@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'member',
 
     # Third party apps
-    'django_gulp',
+    # 'django_gulp',
 
 
 
@@ -152,11 +152,12 @@ MEDIA_URL = '/media/'
 
 # Wagtail settings
 
-WAGTAIL_SITE_NAME = "CAP"
+WAGTAIL_SITE_NAME = "mycap"
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = 'http://mycap.org.pk'
+# BASE_URL = 'http://mycap.org.pk'
+BASE_URL = 'http://localhost:8000'
 
 # Reverse the default case-sensitive handling of tags
 TAGGIT_CASE_INSENSITIVE = True

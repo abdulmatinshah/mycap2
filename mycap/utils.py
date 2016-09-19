@@ -14,8 +14,6 @@ Fields:
         external
         page
         document
-
-
 '''
 class LinkFields(models.Model):
     external_link = models.URLField('External url', blank=True)
