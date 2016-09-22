@@ -3,24 +3,27 @@
 {% block content %}
 <div class="row">
     <div class="col-md-3">
-
         {% sidebar_articles %}
-
         {% side_menu_items parent=self %}
-
     </div>
     <div class="col-md-9">
-        {% if self.members %}
-{% for member in self.members %}
+        {% for member in self.members %}
+        <div class="media">
+            <a class="media-left" href="{% pageurl member %}">
+                {% image member.image fill-180x220 class="media-object" %}
+            </a>
+            <div class="media-body">
+                <h2 class="media-heading"><a href="{% pageurl member %}">{{ member.full_name }} ({{member.title}})</a></h2>
+                <div>{{ member.intro|richtext }}</div>
+                <a href="{% pageurl member %}">Read more&hellip;</a>
+            </div>
+        </div>
+        <hr>
+         {% endfor %}
 
-<h2><a href="{% pageurl member %}">{{member.title}}</a></h2>
-{% if member.image %}
-        {% image member.image fill-180x220 class="img-thumbnail" %}
-    {% endif %}
-    <div>{{ member.biography|richtext }}</div>
-<a href="{% pageurl member %}">Read more&hellip;</a>
-{% endfor %}
-{% endif %}
+
+
+
     </div>
 </div>
 {% endblock content %}

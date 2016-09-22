@@ -11,6 +11,7 @@
     </div>
     <div class="col-md-9">
         <div class="row">
+            <h2>{{ self.full_name }} ({{self.title}})</h2>
             <div class="col-md-3">
                 {% if self.image %}
                     {% image self.image fill-220x260 class="img-thumbnail" %}

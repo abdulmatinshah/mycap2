@@ -1,3 +1,6 @@
+//https://gist.github.com/aaronwaldon/8657432
+// npm install gulp gulp-compass gulp-autoprefixer gulp-minify-css gulp-uglify gulp-rename gulp-concat gulp-notify gulp-livereload gulp-plumber browser-sync --save-dev
+
 'use strict';
 var gulp = require('gulp');
 var gutil = require('gulp-util');

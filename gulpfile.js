@@ -62,7 +62,8 @@ gulp.task('watch', function() {
 gulp.task('compass', function() {
     gulp.src(paths.sass)
         .pipe(compass({
-            style: 'expanded',
+            // style: 'expanded',
+            style: 'compressed',
             comments: false,
             sourcemap:true,
             force: true,

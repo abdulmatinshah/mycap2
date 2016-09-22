@@ -19,10 +19,15 @@ class GoogleMapBlock(blocks.StructBlock):
 
 
 class GoogleMap(models.Model):
+    show_map = models.BooleanField(default=True)
+    map_title = models.CharField(max_length=255, null=True, blank=True)
     map_long = models.CharField(max_length=255, null=True, blank=True)
     map_lat = models.CharField(max_length=255, null=True, blank=True)
     map_zoom_level = models.CharField(max_length=3, default=14, null=True, blank=True)
+
     panels = [
+        FieldPanel('show_map'),
+        FieldPanel('map_title'),
         FieldPanel('map_long'),
         FieldPanel('map_lat'),
         FieldPanel('map_zoom_level'),
