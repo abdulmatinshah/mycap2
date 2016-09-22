@@ -18,7 +18,7 @@ var o_images = './mycap/static/images/';
 var paths = {
     'css': './mycap/static/css/',
     'js': './mycap/static/js/',
-    'sass': './mycap/static/sass/',
+    'sass': './sass/',
     'images': './mycap/static/images/'
 };
 
@@ -36,7 +36,9 @@ var patterns = {
         '!' + paths.js + '**/*.min.js'
     ],
     'css': [
-        paths.css + 'styles.css'
+        paths.css + '*.css',
+        paths.css + '**/*.css',
+
     ],
     'images': [
         paths.images + '*',
@@ -52,13 +54,13 @@ gulp.task('browser-sync', function() {
 });
 
 gulp.task('watch', function() {
-    gulp.watch(paths.css).on("change", function(file) {
+    gulp.watch(paths.css+'styles.css').on("change", function(file) {
         browserSync.reload(file.path);
     });
 });
 
 gulp.task('compass', function() {
-    gulp.src(patterns.sass)
+    gulp.src(paths.sass)
         .pipe(compass({
             style: 'expanded',
             comments: false,

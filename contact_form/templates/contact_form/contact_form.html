@@ -25,7 +25,7 @@
 {% endblock %}
 
 {% block extra_js %}
-<script src="http://maps.googleapis.com/maps/api/js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhQoN9pgyy2bE0yCNKMRscddMHYNjvWl8" type="text/javascript"></script>
 <script>
 function initialize() {
   var mapProp = {
@@ -45,7 +45,6 @@ var marker = new google.maps.Marker({
 });
 }
 google.maps.event.addDomListener(window, 'load', initialize);
-
 
 
 </script>

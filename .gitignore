@@ -9,6 +9,7 @@ log/
 run/
 node_modules/
 .sass-cache/
+sass/
 dist/
 /tmp/
 /media/

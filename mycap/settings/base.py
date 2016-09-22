@@ -29,14 +29,14 @@ INSTALLED_APPS = [
     'home',
     'search',
     # My Apps
-    'content_page',
+    # 'content_page',
     'articles',
     'contact_form',
     'book',
     'member',
 
     # Third party apps
-    # 'django_gulp',
+    'django_gulp',
 
 
 
@@ -105,12 +105,6 @@ WSGI_APPLICATION = 'mycap.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 
 
 # Internationalization

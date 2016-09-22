@@ -28,8 +28,9 @@
 {% if include_context == "index_page" %}
 <div class="article-intro">
     {{ article.body|richtext|truncatewords_html:70 }}
-    <a href="{% pageurl article %}">Read the rest of this entry &raquo;</a>
+    <a href="{% pageurl article %}" class="btn btn-success">Read more &raquo;</a>
 </div>
+<hr>
 {% else %}
 <div class="article-body">
     {{ article.body|richtext }}
