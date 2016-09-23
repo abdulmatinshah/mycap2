@@ -172,3 +172,14 @@ def sidebar_articles(context, exclude=None):
         'articles': articles,
         'request': context['request'],
     }
+
+
+# ///////////////////////////////////////////////
+#     BOOTSTRAP PAGINATION
+# ///////////////////////////////////////////////
+
+@register.inclusion_tag('tags/paginate.html', takes_context=True)
+def paginate(context, objs):
+    return {
+        'objs': objs,
+    }
